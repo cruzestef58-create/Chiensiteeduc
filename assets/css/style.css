@@ -410,12 +410,19 @@ footer    { z-index: 4; }
 /* Services / Tarifs */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  max-width: 840px;
+  margin: 50px auto 0;
+}
+/* petits écrans : une seule colonne */
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; max-width: 400px; }
 }
 .service-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: 20px;
   overflow: hidden;
@@ -446,17 +453,59 @@ footer    { z-index: 4; }
   transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
 }
 .service-card:hover .service-photo img { transform: scale(1.09); }
-.service-body { padding: 26px 26px 30px; }
+.service-body { padding: 26px 26px 30px; flex: 1; display: flex; flex-direction: column; }
 .service-body h3 { color: var(--red); font-size: 1.4rem; margin-bottom: 10px; transition: color 0.3s ease; }
 .service-body p { font-size: 0.98rem; line-height: 1.6; margin-bottom: 18px; }
 .service-price {
   font-family: 'Abril Fatface', serif;
   font-size: 1.8rem;
   color: var(--red);
-  display: inline-block;
+  align-self: flex-start;
+  margin-top: auto;
   transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
 }
 .service-card:hover .service-price { transform: scale(1.14); }
+
+/* ===== Cartes horizontales (fenêtres allongées), empilées ===== */
+.services-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 1040px;
+  margin: 46px auto 0;
+}
+.service-card--h { flex-direction: row; min-height: 190px; }
+/* colonne de droite : image à droite (effet miroir) */
+.services-list .service-card--h:nth-child(even) { flex-direction: row-reverse; }
+.service-card--h .service-photo {
+  position: relative;
+  width: 40%;
+  height: auto;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.service-card--h .service-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%; /* cadré sur le visage du chien (haut de l'image) */
+}
+.service-card--h .service-body {
+  padding: 26px 34px;
+  justify-content: center;
+}
+.service-card--h .service-body h3 { font-size: 1.35rem; }
+.service-card--h .service-body p { font-size: 0.97rem; margin-bottom: 14px; }
+.service-card--h .service-price { font-size: 1.6rem; margin-top: 0; }
+
+/* mobile : une colonne, image au-dessus, texte en dessous */
+@media (max-width: 640px) {
+  .services-list { grid-template-columns: 1fr; }
+  .service-card--h,
+  .services-list .service-card--h:nth-child(even) { flex-direction: column; min-height: 0; }
+  .service-card--h .service-photo { width: 100%; height: 200px; align-self: auto; }
+}
 
 /* Contact */
 .contact-grid {
@@ -732,7 +781,6 @@ footer a:hover { color: var(--white); }
   .logo { gap: 10px; }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 320px; margin: 0 auto; }
-  .services-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .hero-content h1 { font-size: 2.1rem; }
   .form-row { grid-template-columns: 1fr; }
