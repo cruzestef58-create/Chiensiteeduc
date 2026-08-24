@@ -14,6 +14,16 @@ if (pageTransition && !reduceMotion) {
   document.documentElement.classList.remove('js-loading');
 }
 
+// Bouton "précédent/suivant" du navigateur : quand une page est restaurée
+// depuis le cache (bfcache), elle peut revenir figée sur l'écran de transition
+// rouge. On réinitialise toujours l'overlay pour ne jamais rester bloqué.
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted && pageTransition) {
+    pageTransition.classList.remove('pt-cover', 'pt-reveal');
+    document.documentElement.classList.remove('js-loading');
+  }
+});
+
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 

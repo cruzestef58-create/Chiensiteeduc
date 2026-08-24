@@ -293,6 +293,25 @@ footer    { z-index: 4; }
 }
 .info-card p + p { margin-top: 14px; }
 .info-card .highlight { color: var(--red); font-weight: 700; }
+.info-card h3 {
+  color: var(--red);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.12rem;
+  margin: 24px 0 8px;
+}
+.info-card h3:first-child { margin-top: 0; }
+.info-card ul { margin: 8px 0 8px 20px; }
+.info-card li { margin-top: 4px; }
+.info-card a { color: var(--red); text-decoration: underline; font-weight: 600; }
+/* page légale : carte de texte statique (pas d'effet de survol) */
+.info-card.legal:hover { transform: none; box-shadow: var(--shadow); }
+.legal-note {
+  font-size: 0.9rem;
+  color: #8a6a5c;
+  font-style: italic;
+  margin-top: 20px;
+}
 
 /* frise du parcours (timeline) */
 .timeline { position: relative; margin: 30px 0 0; }
