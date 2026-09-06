@@ -536,6 +536,26 @@ footer    { z-index: 4; }
 .contact-card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--red); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
 .contact-cta { text-align: center; margin-top: 50px; }
 
+/* réseaux sociaux */
+.socials { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 44px; flex-wrap: wrap; }
+.socials-label { font-weight: 700; color: var(--red); font-size: 1.05rem; }
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.social-link:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: var(--red-dark);
+  box-shadow: 0 8px 18px rgba(189,78,65,0.32);
+}
+
 /* Footer */
 footer {
   background: var(--red);
