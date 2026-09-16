@@ -666,7 +666,7 @@ footer a:hover { color: var(--white); }
   margin-top: 22px;
   font-weight: 700;
   color: var(--red);
-  text-decoration: underline;
+  text-decoration: none;
   transition: transform 0.2s ease;
 }
 .about-link:hover { transform: translateX(4px); }
