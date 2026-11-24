@@ -473,6 +473,7 @@ footer    { z-index: 4; }
   gap: 28px;
   max-width: 1040px;
   margin: 46px auto 0;
+  align-items: start;
 }
 .service-card--h { flex-direction: row; min-height: 190px; }
 /* colonne de droite : image à droite (effet miroir) */
@@ -498,6 +499,57 @@ footer    { z-index: 4; }
 .service-card--h .service-body h3 { font-size: 1.35rem; }
 .service-card--h .service-body p { font-size: 0.97rem; margin-bottom: 14px; }
 .service-card--h .service-price { font-size: 1.6rem; margin-top: 0; }
+
+/* bouton "En savoir plus" + panneau qui se déplie en douceur */
+.more-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 40px;
+  background: var(--peach-light);
+  color: var(--red);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(189,78,65,0.12);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.more-btn:hover {
+  background: var(--red);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(189,78,65,0.3);
+}
+.more-btn .chev {
+  display: inline-block;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+.more-btn[aria-expanded="true"] { background: var(--red); color: #fff; }
+.more-btn[aria-expanded="true"] .chev { transform: rotate(90deg); }
+
+.more-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: grid-template-rows 0.5s cubic-bezier(.2,.7,.2,1), opacity 0.4s ease, transform 0.5s ease;
+}
+.more-panel > div { overflow: hidden; }
+.more-panel.open { grid-template-rows: 1fr; opacity: 1; transform: none; }
+.more-panel p {
+  margin: 14px 0 2px;
+  padding-left: 14px;
+  border-left: 3px solid var(--peach);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
 
 /* mobile : une colonne, image au-dessus, texte en dessous */
 @media (max-width: 640px) {

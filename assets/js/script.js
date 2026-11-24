@@ -88,6 +88,15 @@ if (pageTransition && !reduceMotion) {
   });
 }
 
+// ===== Boutons "En savoir plus" des prestations =====
+document.querySelectorAll('.more-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open);
+    btn.nextElementSibling.classList.toggle('open', open);
+  });
+});
+
 // ===== Formulaire de pré-bilan (envoi via Web3Forms) =====
 const form = document.getElementById('prebilanForm');
 if (form) {
