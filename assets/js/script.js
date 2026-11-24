@@ -90,11 +90,16 @@ if (pageTransition && !reduceMotion) {
 
 // ===== Boutons "En savoir plus" des prestations =====
 document.querySelectorAll('.more-btn').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') !== 'true';
+  const panel = btn.nextElementSibling;
+  const close = panel.querySelector('.more-close');
+  const setOpen = (open) => {
     btn.setAttribute('aria-expanded', open);
-    btn.nextElementSibling.classList.toggle('open', open);
-  });
+    panel.classList.toggle('open', open);
+    (open ? close : btn).focus({ preventScroll: true });
+  };
+  btn.addEventListener('click', () => setOpen(true));
+  close.addEventListener('click', () => setOpen(false));
+  panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 });
 
 // ===== Formulaire de pré-bilan (envoi via Web3Forms) =====
